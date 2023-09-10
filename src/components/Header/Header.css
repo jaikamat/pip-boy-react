@@ -1,0 +1,39 @@
+.tabs-container {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  font-size: 1.5rem;
+  position: relative;
+}
+
+.tab {
+  cursor: pointer;
+  position: relative;
+}
+
+.active {
+  color: #66ff00;
+}
+
+.tab.active::before,
+.tab.active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 60%;
+  width: 600px;
+  height: 30px;
+  background-size: contain;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.tab.active::before {
+  left: 62px;
+  background-image: url("./header_line_after.png");
+}
+
+.tab.active::after {
+  right: 62px;
+  background-image: url("./header_line_before.png");
+}
