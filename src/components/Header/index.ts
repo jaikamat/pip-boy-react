@@ -1,4 +1,2 @@
-import Header from "./Header";
+export { default } from "./Header";
 export { Tabs } from "./Header";
-
-export default Header;

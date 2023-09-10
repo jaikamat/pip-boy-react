@@ -1,5 +1,6 @@
 .container {
   width: 800px;
   height: 480px;
-  border: 1px solid green;
+  overflow: hidden;
+  border: 1px solid gray;
 }
