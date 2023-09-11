@@ -20,21 +20,24 @@ const Stat = () => {
         activeItem={activeItem}
       />
       {activeItem === subMenuItems.STATUS && (
-        <div className="status-container">
-          <div className="gauge-col-end">
-            <div className="health-gauge-low" />
-            <div className="health-gauge" />
+        <>
+          <div className="status-container">
+            <div className="gauge-col-end">
+              <div className="health-gauge-low" />
+              <div className="health-gauge" />
+            </div>
+            <div className="gauge-col-center">
+              <div className="health-gauge" />
+              <img className="image" src={pipBoyWalk} alt="walk" />
+              <div className="health-gauge" />
+            </div>
+            <div className="gauge-col-end">
+              <div className="health-gauge" />
+              <div className="health-gauge" />
+            </div>
           </div>
-          <div className="gauge-col-center">
-            <div className="health-gauge" />
-            <img className="image" src={pipBoyWalk} alt="walk" />
-            <div className="health-gauge" />
-          </div>
-          <div className="gauge-col-end">
-            <div className="health-gauge" />
-            <div className="health-gauge" />
-          </div>
-        </div>
+          <div className="name-container">Captain Awesome</div>
+        </>
       )}
       {activeItem === subMenuItems.SPECIAL && <div>SPECIAL goes here</div>}
       {activeItem === subMenuItems.PERKS && <div>PERKS goes here</div>}

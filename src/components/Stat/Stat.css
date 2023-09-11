@@ -44,3 +44,9 @@
   grid-template-columns: 425px;
   grid-template-rows: auto 1fr;
 }
+
+.name-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
