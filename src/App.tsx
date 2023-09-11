@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Header, { Tabs } from "./components/Header";
 import Stat from "./components/Stat";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [activeTab, setActiveTab] = useState<string>(Tabs.STAT);
@@ -19,7 +20,7 @@ function App() {
         {activeTab === Tabs.COLOR && <div>COLOR goes here</div>}
       </div>
       <div className="container-item">
-        <footer>footer content goes here</footer>
+        <Footer />
       </div>
     </div>
   );
