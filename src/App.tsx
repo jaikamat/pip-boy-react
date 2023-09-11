@@ -8,17 +8,18 @@ function App() {
 
   return (
     <div className="container">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
+      <div className="container-item">
         <Header onChange={(tab) => setActiveTab(tab)} activeTab={activeTab} />
-        {/* TODO: Hacky, don't do this */}
-        <br />
+      </div>
+      <div className="container-item">
         {activeTab === Tabs.STAT && <Stat />}
+        {activeTab === Tabs.EXP && <div>EXP goes here</div>}
+        {activeTab === Tabs.MAP && <div>MAP goes here</div>}
+        {activeTab === Tabs.DATA && <div>DATA goes here</div>}
+        {activeTab === Tabs.COLOR && <div>COLOR goes here</div>}
+      </div>
+      <div className="container-item">
+        <footer>footer content goes here</footer>
       </div>
     </div>
   );

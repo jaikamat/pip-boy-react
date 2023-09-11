@@ -36,8 +36,8 @@ const Stat = () => {
           </div>
         </div>
       )}
-      {activeItem === subMenuItems.SPECIAL && <div>SPECIAL</div>}
-      {activeItem === subMenuItems.PERKS && <div>PERKS</div>}
+      {activeItem === subMenuItems.SPECIAL && <div>SPECIAL goes here</div>}
+      {activeItem === subMenuItems.PERKS && <div>PERKS goes here</div>}
     </div>
   );
 };
