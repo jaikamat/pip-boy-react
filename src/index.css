@@ -7,3 +7,8 @@ body {
   background-color: black;
   color: #1adc09;
 }
+
+@font-face {
+  font-family: Monofonto;
+  src: url("./fonts/monofonto.ttf");
+}
