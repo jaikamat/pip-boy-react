@@ -27,3 +27,34 @@ footer {
   bottom: 0;
   z-index: 10;
 }
+
+.glow-text {
+  color: #1adc09;
+  text-shadow: 0 0 5px rgb(0, 61, 0), 0 0 10px rgb(0, 61, 0),
+    0 0 15px rgb(0, 61, 0), 0 0 20px rgb(0, 61, 0);
+}
+
+.crt-effect {
+  /* Base setup for the container */
+  position: relative;
+  background-color: black; /* Background can be set to black for that classic CRT look */
+  overflow: hidden;
+}
+
+.crt-effect::after {
+  /* This creates the scanline effect */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none; /* Ensure clicks go through the overlay */
+}
