@@ -8,7 +8,8 @@ function App() {
   const [activeTab, setActiveTab] = useState<string>(Tabs.STAT);
 
   return (
-    <div className="container glow-text crt-effect">
+    // <div className="container glow-text crt-effect">
+    <div className="container">
       <div className="container-item">
         <Header onChange={(tab) => setActiveTab(tab)} initialTab={activeTab} />
       </div>
