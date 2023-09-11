@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import useNextTab from "../../hooks/useNextTab/useNextTab";
 import "./Header.css";
 
 export const Tabs = {
@@ -10,11 +12,20 @@ export const Tabs = {
 
 const Header = ({
   onChange,
-  activeTab,
+  initialTab,
 }: {
   onChange: (tab: string) => void;
-  activeTab: string;
+  initialTab?: string;
 }) => {
+  const [activeTab, setActiveTab] = useNextTab(
+    initialTab || Object.keys(Tabs)[0],
+    Tabs
+  );
+
+  useEffect(() => {
+    onChange(activeTab as string);
+  }, [activeTab, onChange]);
+
   return (
     <header className="tabs-container">
       {Object.entries(Tabs).map(([name, label]) => {
@@ -22,7 +33,14 @@ const Header = ({
           <div
             key={name}
             className={`tab ${activeTab === name ? "active" : ""}`}
-            onClick={() => onChange(name)}
+            onClick={() => {
+              // Set internal state
+              (setActiveTab as React.Dispatch<React.SetStateAction<string>>)(
+                name
+              );
+              // Broadcast change
+              onChange(name);
+            }}
           >
             {label}
           </div>

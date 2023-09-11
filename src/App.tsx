@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="container glow-text crt-effect">
       <div className="container-item">
-        <Header onChange={(tab) => setActiveTab(tab)} activeTab={activeTab} />
+        <Header onChange={(tab) => setActiveTab(tab)} initialTab={activeTab} />
       </div>
       <div className="container-item">
         {activeTab === Tabs.STAT && <Stat />}
