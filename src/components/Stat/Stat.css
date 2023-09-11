@@ -1,5 +1,6 @@
 .status-container {
   display: flex;
+  justify-content: center;
 }
 
 .gauge-col-end {
@@ -36,4 +37,10 @@
   border: 2px solid #1adc09;
   background: linear-gradient(to right, #1adc09 75%, black 75%, black 100%);
   margin: 20px 20px 20px 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 425px;
+  grid-template-rows: auto auto auto;
 }

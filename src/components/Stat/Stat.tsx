@@ -13,7 +13,7 @@ const Stat = () => {
   const [activeItem, setActiveItem] = useState<string>(subMenuItems.STATUS);
 
   return (
-    <div>
+    <div className="grid-container">
       <SubMenu
         menuItems={subMenuItems}
         onChange={(item) => setActiveItem(item)}

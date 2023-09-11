@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Header, { Tabs } from "./components/Header";
-import Stat from "./components/Stat/Stat";
+import Stat from "./components/Stat";
 
 function App() {
   const [activeTab, setActiveTab] = useState<string>(Tabs.STAT);
@@ -19,7 +19,6 @@ function App() {
         {/* TODO: Hacky, don't do this */}
         <br />
         {activeTab === Tabs.STAT ? <Stat /> : null}
-        <pre>{activeTab}</pre>
       </div>
     </div>
   );
