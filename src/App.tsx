@@ -18,7 +18,7 @@ function App() {
         <Header onChange={(tab) => setActiveTab(tab)} activeTab={activeTab} />
         {/* TODO: Hacky, don't do this */}
         <br />
-        {activeTab === Tabs.STAT ? <Stat /> : null}
+        {activeTab === Tabs.STAT && <Stat />}
       </div>
     </div>
   );

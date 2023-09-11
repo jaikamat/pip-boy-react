@@ -16,7 +16,7 @@ const Header = ({
   activeTab: string;
 }) => {
   return (
-    <div className="tabs-container">
+    <header className="tabs-container">
       {Object.entries(Tabs).map(([name, label]) => {
         return (
           <div
@@ -28,7 +28,7 @@ const Header = ({
           </div>
         );
       })}
-    </div>
+    </header>
   );
 };
 
