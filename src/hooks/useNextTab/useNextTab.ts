@@ -6,15 +6,16 @@ function useNextTab(initialTab: string, tabs: Record<string, string>) {
 
   useEffect(() => {
     function handleKeyPress(event: KeyboardEvent) {
-      const currentIndex = tabsArray.indexOf(currentTab);
-
-      if (event.key === "w" || event.key === "W") {
-        const nextIndex = (currentIndex + 1) % tabsArray.length;
-        setCurrentTab(tabsArray[nextIndex]);
-      } else if (event.key === "q" || event.key === "Q") {
-        const prevIndex =
-          currentIndex - 1 < 0 ? tabsArray.length - 1 : currentIndex - 1;
-        setCurrentTab(tabsArray[prevIndex]);
+      if (event.key === "1") {
+        setCurrentTab(tabsArray[0]);
+      } else if (event.key === "2") {
+        setCurrentTab(tabsArray[1]);
+      } else if (event.key === "3") {
+        setCurrentTab(tabsArray[2]);
+      } else if (event.key === "4") {
+        setCurrentTab(tabsArray[3]);
+      } else if (event.key === "5") {
+        setCurrentTab(tabsArray[4]);
       }
     }
 
