@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "./static/css/main.94316e9a.css",
-    "main.js": "./static/js/main.c9bb7be9.js",
+    "main.js": "./static/js/main.c1566394.js",
     "static/media/pip-boy-walk.gif": "./static/media/pip-boy-walk.088878036f69db7c23ee.gif",
     "static/media/monofonto.ttf": "./static/media/monofonto.821b3e3165be8bd476b6.ttf",
     "index.html": "./index.html",
     "main.94316e9a.css.map": "./static/css/main.94316e9a.css.map",
-    "main.c9bb7be9.js.map": "./static/js/main.c9bb7be9.js.map"
+    "main.c1566394.js.map": "./static/js/main.c1566394.js.map"
   },
   "entrypoints": [
     "static/css/main.94316e9a.css",
-    "static/js/main.c9bb7be9.js"
+    "static/js/main.c1566394.js"
   ]
 }
