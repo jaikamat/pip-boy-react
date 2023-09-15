@@ -1,14 +1,18 @@
+import { useState } from "react";
 import "./SubMenu.css";
 
+// TODO: menu selection with arrow keys
 const SubMenu = ({
   menuItems,
   onChange,
-  activeItem,
 }: {
   menuItems: Record<string, string>;
   onChange: (item: string) => void;
-  activeItem: string;
 }) => {
+  const [activeItem, setActiveItem] = useState<string>(
+    Object.keys(menuItems)[0]
+  );
+
   return (
     <div className="submenu-container">
       {Object.entries(menuItems).map(([name, label]) => {
@@ -16,7 +20,10 @@ const SubMenu = ({
           <div
             key={label}
             className={`item ${activeItem === name ? "active-item" : ""}`}
-            onClick={() => onChange(name)}
+            onClick={() => {
+              setActiveItem(name);
+              onChange(name);
+            }}
           >
             {label}
           </div>

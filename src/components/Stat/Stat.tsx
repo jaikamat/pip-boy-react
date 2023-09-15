@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SubMenu from "../SubMenu/SubMenu";
+import SubMenu from "../SubMenu";
 import "./Stat.css";
 import pipBoyWalk from "./pip-boy-walk.gif";
 
@@ -17,7 +17,6 @@ const Stat = () => {
       <SubMenu
         menuItems={subMenuItems}
         onChange={(item) => setActiveItem(item)}
-        activeItem={activeItem}
       />
       {activeItem === subMenuItems.STATUS && (
         <>
