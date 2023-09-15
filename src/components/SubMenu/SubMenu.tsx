@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SubMenu.css";
 
-// TODO: menu selection with arrow keys
 const SubMenu = ({
   menuItems,
   onChange,
@@ -12,6 +11,27 @@ const SubMenu = ({
   const [activeItem, setActiveItem] = useState<string>(
     Object.keys(menuItems)[0]
   );
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const keys = Object.keys(menuItems);
+      const currentIndex = keys.indexOf(activeItem);
+      if (event.key === "w" && currentIndex < keys.length - 1) {
+        const nextItem = keys[currentIndex + 1];
+        setActiveItem(nextItem);
+        onChange(nextItem);
+      } else if (event.key === "q" && currentIndex > 0) {
+        const prevItem = keys[currentIndex - 1];
+        setActiveItem(prevItem);
+        onChange(prevItem);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeItem, menuItems, onChange]);
 
   return (
     <div className="submenu-container">
