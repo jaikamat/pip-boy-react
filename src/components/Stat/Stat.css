@@ -21,6 +21,7 @@
 .image {
   height: 225px;
   filter: brightness(1.75);
+  z-index: 101;
 }
 
 .health-gauge {

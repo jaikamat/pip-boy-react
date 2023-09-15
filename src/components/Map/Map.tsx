@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Mercator } from "@visx/geo";
+import { Graticule, Mercator } from "@visx/geo";
 import * as topojson from "topojson-client";
 import topology from "./world-topo.json";
 
@@ -80,22 +80,6 @@ const Map: React.FC = () => {
 
   return (
     <svg width={width} height={height}>
-      <defs>
-        <radialGradient
-          id="transparentToGreen"
-          cx="0.5"
-          cy="0.5"
-          r="0.5"
-          fx="0.5"
-          fy="0.5"
-        >
-          <stop offset="0%" style={{ stopColor: "#1adc09", stopOpacity: 0 }} />
-          <stop
-            offset="100%"
-            style={{ stopColor: "#1adc09", stopOpacity: 0.1 }}
-          />
-        </radialGradient>
-      </defs>
       <Mercator
         data={world.features}
         scale={scale}
@@ -108,10 +92,15 @@ const Map: React.FC = () => {
                 key={`map-feature-${i}`}
                 d={path || ""}
                 stroke="#1adc09"
-                strokeWidth={0.4}
-                fill="url(#transparentToGreen)"
+                strokeWidth={2}
+                // fill="url(#transparentToGreen)"
               />
             ))}
+            <Graticule
+              graticule={(g) => mercator.path(g) || ""}
+              stroke="rgba(26, 220, 9, 0.2)"
+              strokeWidth={2}
+            />
           </g>
         )}
       </Mercator>
