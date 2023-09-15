@@ -15,7 +15,7 @@ function App() {
       </div>
       <div className="container-item">
         {activeTab === Tabs.STAT && <Stat />}
-        {activeTab === Tabs.EXP && <div>EXP goes here</div>}
+        {activeTab === Tabs.INV && <div>INV goes here</div>}
         {activeTab === Tabs.MAP && <div>MAP goes here</div>}
         {activeTab === Tabs.DATA && <div>DATA goes here</div>}
         {activeTab === Tabs.COLOR && <div>COLOR goes here</div>}

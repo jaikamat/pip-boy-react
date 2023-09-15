@@ -4,7 +4,7 @@ import "./Header.css";
 
 export const Tabs = {
   STAT: "STAT",
-  EXP: "EXP",
+  INV: "INV",
   DATA: "DATA",
   MAP: "MAP",
   COLOR: "COLOR",
