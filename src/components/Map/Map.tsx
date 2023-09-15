@@ -1,40 +1,72 @@
-import React, { useState, useEffect } from "react";
-import { Group } from "@visx/group";
+import React, { useEffect, useState } from "react";
 import { Mercator } from "@visx/geo";
-import us from "./us-10m.json";
-import { feature } from "topojson-client";
-import { FeatureCollection, Geometry } from "geojson";
+import * as topojson from "topojson-client";
+import topology from "./world-topo.json";
 
-const Map = () => {
+interface FeatureShape {
+  type: "Feature";
+  id: string;
+  geometry: { coordinates: [number, number][][]; type: "Polygon" };
+  properties: { name: string };
+}
+
+// @ts-expect-error
+const world = topojson.feature(topology, topology.objects.units) as {
+  type: "FeatureCollection";
+  features: FeatureShape[];
+};
+
+const Map: React.FC = () => {
   const width: number = 799;
   const height: number = 479;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const initialScale = (width / 630) * 100;
 
   const [offsetX, setOffsetX] = useState<number>(0);
   const [offsetY, setOffsetY] = useState<number>(0);
-  const [zoom, setZoom] = useState<number>(4);
+  const [scale, setScale] = useState<number>(initialScale);
+
+  const adjustOffsetsForZoom = (zoomFactor: number) => {
+    // Calculate zoom focal point. This is the center of the current SVG content's visible part.
+    const focalX = offsetX;
+    const focalY = offsetY - 50;
+
+    // Adjust the offsets based on the zoom factor and the focal point
+    setOffsetX(
+      (prevOffset) => prevOffset + (focalX - prevOffset) * (1 - zoomFactor)
+    );
+    setOffsetY(
+      (prevOffset) => prevOffset + (focalY - prevOffset) * (1 - zoomFactor)
+    );
+  };
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    const PAN_AMOUNT = 20;
-    const ZOOM_AMOUNT = 0.1;
+    const PAN_AMOUNT = 30;
+    const ZOOM_AMOUNT = 1.5; // This can be adjusted. Greater than 1 for zooming in, less than 1 for zooming out
 
     switch (event.key) {
       case "ArrowUp":
         if (event.metaKey) {
-          setZoom((prevZoom) => prevZoom + ZOOM_AMOUNT);
+          setScale((prevScale) => prevScale * ZOOM_AMOUNT);
+          adjustOffsetsForZoom(ZOOM_AMOUNT);
+        } else {
+          setOffsetY((prevState) => prevState + PAN_AMOUNT);
         }
-        setOffsetY((prevState) => prevState - PAN_AMOUNT);
         break;
       case "ArrowDown":
         if (event.metaKey) {
-          setZoom((prevZoom) => prevZoom - ZOOM_AMOUNT);
+          setScale((prevScale) => prevScale / ZOOM_AMOUNT);
+          adjustOffsetsForZoom(1 / ZOOM_AMOUNT);
+        } else {
+          setOffsetY((prevState) => prevState - PAN_AMOUNT);
         }
-        setOffsetY((prevState) => prevState + PAN_AMOUNT);
         break;
       case "ArrowLeft":
-        setOffsetX((prevState) => prevState - PAN_AMOUNT);
+        setOffsetX((prevState) => prevState + PAN_AMOUNT);
         break;
       case "ArrowRight":
-        setOffsetX((prevState) => prevState + PAN_AMOUNT);
+        setOffsetX((prevState) => prevState - PAN_AMOUNT);
         break;
     }
   };
@@ -46,43 +78,43 @@ const Map = () => {
     };
   }, []);
 
-  // @ts-ignore
-  const geoData = feature(
-    us as any,
-    us.objects.states as any
-  ) as FeatureCollection<Geometry>;
-
   return (
     <svg width={width} height={height}>
-      <Group left={offsetX} top={offsetY}>
-        <Mercator
-          graticuleLines={{ foreground: true }}
-          data={geoData.features}
-          scale={zoom * 100}
-          //   center={[87, 39]}
-          //   translate={[width + width / 2, height]}
-          translate={[width + width / 2, height]}
+      <defs>
+        <radialGradient
+          id="transparentToGreen"
+          cx="0.5"
+          cy="0.5"
+          r="0.5"
+          fx="0.5"
+          fy="0.5"
         >
-          {(mercator) => {
-            return (
-              <g>
-                {mercator.features.map((feature, i) => {
-                  const { feature: f } = feature;
-                  return (
-                    <path
-                      key={`map-feature-${i}`}
-                      d={mercator.path(f) || ""}
-                      stroke="#1adc09"
-                      strokeWidth={0.5}
-                      fill="none"
-                    />
-                  );
-                })}
-              </g>
-            );
-          }}
-        </Mercator>
-      </Group>
+          <stop offset="0%" style={{ stopColor: "#1adc09", stopOpacity: 0 }} />
+          <stop
+            offset="100%"
+            style={{ stopColor: "#1adc09", stopOpacity: 0.2 }}
+          />
+        </radialGradient>
+      </defs>
+      <Mercator
+        data={world.features}
+        scale={scale}
+        translate={[centerX + offsetX, centerY + 50 + offsetY]}
+      >
+        {(mercator) => (
+          <g>
+            {mercator.features.map(({ feature, path }, i) => (
+              <path
+                key={`map-feature-${i}`}
+                d={path || ""}
+                stroke="#1adc09"
+                strokeWidth={0.5}
+                fill="url(#transparentToGreen)"
+              />
+            ))}
+          </g>
+        )}
+      </Mercator>
     </svg>
   );
 };
