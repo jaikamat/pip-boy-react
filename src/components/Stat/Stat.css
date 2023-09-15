@@ -19,7 +19,7 @@
 }
 
 .image {
-  height: 175px;
+  height: 225px;
   filter: brightness(1.75);
 }
 
@@ -43,10 +43,4 @@
   display: grid;
   grid-template-columns: 425px;
   grid-template-rows: auto 1fr;
-}
-
-.name-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

@@ -36,7 +36,6 @@ const Stat = () => {
               <div className="health-gauge" />
             </div>
           </div>
-          <div className="name-container">Captain Awesome</div>
         </>
       )}
       {activeItem === subMenuItems.SPECIAL && <div>SPECIAL goes here</div>}
