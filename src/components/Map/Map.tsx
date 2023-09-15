@@ -92,7 +92,7 @@ const Map: React.FC = () => {
           <stop offset="0%" style={{ stopColor: "#1adc09", stopOpacity: 0 }} />
           <stop
             offset="100%"
-            style={{ stopColor: "#1adc09", stopOpacity: 0.2 }}
+            style={{ stopColor: "#1adc09", stopOpacity: 0.1 }}
           />
         </radialGradient>
       </defs>
@@ -108,7 +108,7 @@ const Map: React.FC = () => {
                 key={`map-feature-${i}`}
                 d={path || ""}
                 stroke="#1adc09"
-                strokeWidth={0.5}
+                strokeWidth={0.4}
                 fill="url(#transparentToGreen)"
               />
             ))}
