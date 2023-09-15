@@ -4,6 +4,7 @@ import Header, { Tabs } from "./components/Header";
 import Stat from "./components/Stat";
 import Footer from "./components/Footer/Footer";
 import Inv from "./components/Inv/Inv";
+import Map from "./components/Map/Map";
 
 function App() {
   const [activeTab, setActiveTab] = useState<string>(Tabs.STAT);
@@ -17,7 +18,7 @@ function App() {
       <div className="container-item">
         {activeTab === Tabs.STAT && <Stat />}
         {activeTab === Tabs.INV && <Inv />}
-        {activeTab === Tabs.MAP && <div>MAP goes here</div>}
+        {activeTab === Tabs.MAP && <Map />}
         {activeTab === Tabs.DATA && <div>DATA goes here</div>}
         {activeTab === Tabs.COLOR && <div>COLOR goes here</div>}
       </div>
