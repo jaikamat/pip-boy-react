@@ -16,11 +16,11 @@ const SubMenu = ({
     const handleKeyDown = (event: KeyboardEvent) => {
       const keys = Object.keys(menuItems);
       const currentIndex = keys.indexOf(activeItem);
-      if (event.key === "w" && currentIndex < keys.length - 1) {
+      if (event.key === "ArrowRight" && currentIndex < keys.length - 1) {
         const nextItem = keys[currentIndex + 1];
         setActiveItem(nextItem);
         onChange(nextItem);
-      } else if (event.key === "q" && currentIndex > 0) {
+      } else if (event.key === "ArrowLeft" && currentIndex > 0) {
         const prevItem = keys[currentIndex - 1];
         setActiveItem(prevItem);
         onChange(prevItem);
