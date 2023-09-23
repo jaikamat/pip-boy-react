@@ -1,5 +1,17 @@
+.inv-container {
+  grid-template-areas:
+    "blank header header blank"
+    "content content content content";
+}
+
+.inv-menu {
+  grid-area: header;
+}
+
 .grid-container {
   display: grid;
-  grid-template-columns: 425px;
+  grid-template-columns: 779px;
   grid-template-rows: auto 1fr;
+  padding-left: 10px;
+  padding-right: 10px;
 }

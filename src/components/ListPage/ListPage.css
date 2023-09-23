@@ -1,0 +1,25 @@
+.listpage-container {
+  height: 100%;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas:
+    "list list image"
+    "list list image"
+    "list list data";
+}
+
+.outline {
+  border: 1px solid green;
+}
+
+.list-child {
+  grid-area: list;
+}
+
+.image-child {
+  grid-area: image;
+}
+
+.data-child {
+  grid-area: data;
+}

@@ -33,9 +33,19 @@ const SubMenu = ({
     };
   }, [activeItem, menuItems, onChange]);
 
+  const computeOpacity = (index: number) => {
+    const currentIndex = Object.keys(menuItems).indexOf(activeItem);
+    const distance = Math.abs(currentIndex - index);
+    const maxDistance = Math.max(
+      currentIndex,
+      Object.keys(menuItems).length - currentIndex - 1
+    );
+    return 1 - distance / (maxDistance + 1);
+  };
+
   return (
     <div className="submenu-container">
-      {Object.entries(menuItems).map(([name, label]) => {
+      {Object.entries(menuItems).map(([name, label], idx) => {
         return (
           <div
             key={label}
@@ -44,6 +54,7 @@ const SubMenu = ({
               setActiveItem(name);
               onChange(name);
             }}
+            style={{ opacity: computeOpacity(idx) }}
           >
             {label}
           </div>
