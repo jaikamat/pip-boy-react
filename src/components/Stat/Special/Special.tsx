@@ -1,6 +1,6 @@
 import ListPage from "../../ListPage/ListPage";
 
-const Misc = () => {
+const Special = () => {
   return (
     <ListPage>
       <ListPage.List>List</ListPage.List>
@@ -10,4 +10,4 @@ const Misc = () => {
   );
 };
 
-export default Misc;
+export default Special;

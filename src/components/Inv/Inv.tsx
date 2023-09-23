@@ -2,7 +2,8 @@ import { useState } from "react";
 import SubMenu from "../SubMenu/SubMenu";
 import "./Inv.css";
 import Misc from "./Misc/Misc";
-import Weapons from "../Weapons/Weapons";
+import Weapons from "./Weapons/Weapons";
+import Apparel from "./Apparel/Apparel";
 
 const subMenuItems = {
   WEAPONS: "WEAPONS",
@@ -19,7 +20,7 @@ const Inv = () => {
         menuItems={subMenuItems}
         onChange={(item) => setActiveItem(item)}
       />
-      {activeItem === subMenuItems.APPAREL && <div>Apparel</div>}
+      {activeItem === subMenuItems.APPAREL && <Apparel />}
       {activeItem === subMenuItems.WEAPONS && <Weapons />}
       {activeItem === subMenuItems.MISC && <Misc />}
     </div>

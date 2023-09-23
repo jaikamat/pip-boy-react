@@ -1,7 +1,9 @@
 import { useState } from "react";
 import SubMenu from "../SubMenu";
 import "./Stat.css";
-import pipBoyWalk from "./pip-boy-walk.gif";
+import Status from "./Status/Status";
+import Special from "./Special/Special";
+import Perks from "./Perks/Perks";
 
 const subMenuItems = {
   STATUS: "STATUS",
@@ -18,25 +20,9 @@ const Stat = () => {
         menuItems={subMenuItems}
         onChange={(item) => setActiveItem(item)}
       />
-      {activeItem === subMenuItems.STATUS && (
-        <div className="status-container">
-          <div className="gauge-col-end">
-            <div className="health-gauge-low" />
-            <div className="health-gauge" />
-          </div>
-          <div className="gauge-col-center">
-            <div className="health-gauge" />
-            <img className="image" src={pipBoyWalk} alt="walk" />
-            <div className="health-gauge" />
-          </div>
-          <div className="gauge-col-end">
-            <div className="health-gauge" />
-            <div className="health-gauge" />
-          </div>
-        </div>
-      )}
-      {activeItem === subMenuItems.SPECIAL && <div>SPECIAL goes here</div>}
-      {activeItem === subMenuItems.PERKS && <div>PERKS goes here</div>}
+      {activeItem === subMenuItems.STATUS && <Status />}
+      {activeItem === subMenuItems.SPECIAL && <Special />}
+      {activeItem === subMenuItems.PERKS && <Perks />}
     </div>
   );
 };

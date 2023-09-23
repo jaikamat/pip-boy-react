@@ -1,0 +1,41 @@
+.status-container {
+  display: flex;
+  justify-content: center;
+}
+
+.gauge-col-end {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center;
+}
+
+.gauge-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image {
+  height: 225px;
+  filter: brightness(1.75);
+  z-index: 101;
+}
+
+.health-gauge {
+  width: 60px;
+  height: 8px;
+  border: 2px solid #1adc09;
+  background-color: #1adc09;
+  margin: 20px 20px 20px 20px;
+}
+
+.health-gauge-low {
+  width: 60px;
+  height: 8px;
+  border: 2px solid #1adc09;
+  background: linear-gradient(to right, #1adc09 75%, black 75%, black 100%);
+  margin: 20px 20px 20px 20px;
+}
