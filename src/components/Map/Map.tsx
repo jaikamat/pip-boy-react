@@ -1,20 +1,28 @@
 import { useEffect } from "react";
-import * as topojson from "topojson-client";
-import topology from "./world-topo.json";
-import { MapContainer, GeoJSON, useMap } from "react-leaflet";
+import dragonCon from "./atlanta-dragoncon.json";
+import { MapContainer, GeoJSON, useMap, GeoJSONProps } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import leaflet from "leaflet";
+import "./Map.css";
+import MarkerClusterGroup from "react-leaflet-cluster";
 
-interface FeatureShape {
-  type: "Feature";
-  id: string;
-  geometry: { coordinates: [number, number][][]; type: "Polygon" };
-  properties: { name: string };
-}
+// @ts-ignore
+const createCustomIcon = (text) => {
+  return leaflet.divIcon({
+    className: "custom-icon",
+    html: `<div class="custom-icon-text">${text}</div>`,
+    iconSize: [15, 15], // size of the icon
+    iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -15], // point from which the popup should open relative to the iconAnchor
+  });
+};
 
-// @ts-expect-error
-const world = topojson.feature(topology, topology.objects.units) as {
-  type: "FeatureCollection";
-  features: FeatureShape[];
+// @ts-ignore
+const pointToLayer = (feature, latlng) => {
+  if (!feature.properties.name) return;
+
+  const icon = createCustomIcon(feature.properties.name);
+  return leaflet.marker(latlng, { icon });
 };
 
 const FocusOnLoad = () => {
@@ -52,24 +60,36 @@ const FocusOnLoad = () => {
   return null;
 };
 
+// TODO: Gotta see how we can get the hotel names in there, for some reason they are not visible
 const Map = () => {
   return (
     <MapContainer
       preferCanvas
       zoomControl={false}
       attributionControl={false}
-      center={[51.505, -0.09]}
-      zoom={3}
+      center={[33.761585, -84.385612]}
+      zoom={17}
+      maxZoom={30}
       style={{
         width: "100%",
         height: "100%",
-        // zIndex: 200,
         backgroundColor: "black",
         outline: "none",
       }}
     >
       <FocusOnLoad />
-      <GeoJSON data={world} pathOptions={{ color: "#1adc09" }} />
+      <MarkerClusterGroup
+        animate={false}
+        removeOutsideVisibleBounds
+        disableClusteringAtZoom={19}
+      >
+        <GeoJSON
+          data={dragonCon as GeoJSONProps["data"]}
+          pathOptions={{ color: "darkgreen" }}
+          // @ts-ignore
+          pointToLayer={pointToLayer}
+        />
+      </MarkerClusterGroup>
     </MapContainer>
   );
 };
