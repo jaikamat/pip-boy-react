@@ -1,15 +1,29 @@
 {
   "files": {
-    "main.css": "./static/css/main.ec9c2e88.css",
-    "main.js": "./static/js/main.edff7427.js",
+    "main.css": "./static/css/main.bb779297.css",
+    "main.js": "./static/js/main.9608a1a2.js",
+    "static/media/strength.gif": "./static/media/strength.18922e65ea3eb0325bc6.gif",
+    "static/media/right-arm.gif": "./static/media/right-arm.35cb680446cdf391339e.gif",
+    "static/media/intelligence.gif": "./static/media/intelligence.11b353c05b10bb8efba2.gif",
+    "static/media/perception.gif": "./static/media/perception.6154bdba815499bc1d7c.gif",
+    "static/media/luck.gif": "./static/media/luck.c331a6612b0818d4ec01.gif",
+    "static/media/charisma.gif": "./static/media/charisma.75e1884b192064cc5b12.gif",
+    "static/media/helmet.gif": "./static/media/helmet.b200d560d38a3dcc309d.gif",
+    "static/media/glasses.gif": "./static/media/glasses.5bc4542aea286a96c70d.gif",
+    "static/media/right-leg.gif": "./static/media/right-leg.a9f7eafd4b72001ce143.gif",
+    "static/media/armor.gif": "./static/media/armor.bd07de3b3c4f0c8abd33.gif",
+    "static/media/left-arm.gif": "./static/media/left-arm.9dc6db349833c243c88f.gif",
+    "static/media/left-leg.gif": "./static/media/left-leg.275f2a36bfdc30db201a.gif",
     "static/media/pip-boy-walk.gif": "./static/media/pip-boy-walk.088878036f69db7c23ee.gif",
+    "static/media/agility.gif": "./static/media/agility.e4d9765eb68f7207c55e.gif",
+    "static/media/endurance.gif": "./static/media/endurance.e3009c00b5d5b8c78d3b.gif",
     "static/media/monofonto.ttf": "./static/media/monofonto.821b3e3165be8bd476b6.ttf",
     "index.html": "./index.html",
-    "main.ec9c2e88.css.map": "./static/css/main.ec9c2e88.css.map",
-    "main.edff7427.js.map": "./static/js/main.edff7427.js.map"
+    "main.bb779297.css.map": "./static/css/main.bb779297.css.map",
+    "main.9608a1a2.js.map": "./static/js/main.9608a1a2.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec9c2e88.css",
-    "static/js/main.edff7427.js"
+    "static/css/main.bb779297.css",
+    "static/js/main.9608a1a2.js"
   ]
 }
