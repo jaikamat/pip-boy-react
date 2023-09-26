@@ -12,15 +12,15 @@ interface CompoundListPage extends React.FC<ChildProps> {
 }
 
 const List: React.FC<ChildProps> = ({ children }) => (
-  <div className="list-child outline">{children}</div>
+  <div className="list-child">{children}</div>
 );
 
 const Image: React.FC<ChildProps> = ({ children }) => (
-  <div className="image-child outline">{children}</div>
+  <div className="image-child">{children}</div>
 );
 
 const Data: React.FC<ChildProps> = ({ children }) => (
-  <div className="data-child outline">{children}</div>
+  <div className="data-child">{children}</div>
 );
 
 const ListPage: CompoundListPage = ({ children }) => {

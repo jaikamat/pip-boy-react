@@ -1,0 +1,16 @@
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+li {
+  font-size: 1.5rem;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.list-active {
+  background-color: #1adc09; /* Just an example, use any style you like */
+  color: black;
+  outline: none;
+}

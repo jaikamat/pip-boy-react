@@ -6,18 +6,27 @@
     "list list image"
     "list list image"
     "list list data";
-}
-
-.outline {
-  border: 1px solid green;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .list-child {
   grid-area: list;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .image-child {
   grid-area: image;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-child img {
+  height: 225px;
+  position: relative;
+  z-index: 100;
 }
 
 .data-child {
