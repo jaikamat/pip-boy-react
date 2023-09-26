@@ -1,4 +1,4 @@
-import { KeyboardEventHandler, useEffect, useState } from "react";
+import { KeyboardEventHandler, useEffect, useRef, useState } from "react";
 import "./List.css";
 
 const List = ({
@@ -9,6 +9,7 @@ const List = ({
   onChange: (item: string) => void;
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const listRef = useRef(null);
 
   useEffect(() => {
     // Focus the active item whenever it changes
@@ -34,12 +35,17 @@ const List = ({
     }
   };
 
+  const handleItemClick = (index: number) => {
+    setActiveIndex(index);
+  };
+
   return (
     <ul
       role="listbox"
       onKeyDown={
         handleKeyDown as unknown as KeyboardEventHandler<HTMLUListElement>
       }
+      ref={listRef}
     >
       {items.map((item, index) => (
         <li
@@ -49,6 +55,7 @@ const List = ({
           role="option"
           aria-selected={index === activeIndex}
           tabIndex={index === activeIndex ? 0 : -1} // Only the active item should be focusable
+          onClick={() => handleItemClick(index)}
         >
           {item}
         </li>
