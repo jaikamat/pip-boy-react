@@ -7,7 +7,7 @@ export const Tabs = {
   INV: "INV",
   DATA: "DATA",
   MAP: "MAP",
-  COLOR: "COLOR",
+  RADIO: "RADIO",
 } as const;
 
 const Header = ({

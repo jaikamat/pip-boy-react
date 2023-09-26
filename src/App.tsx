@@ -25,7 +25,7 @@ function App() {
           {activeTab === Tabs.INV && <Inv />}
           {activeTab === Tabs.MAP && <Map />}
           {activeTab === Tabs.DATA && <div>DATA goes here</div>}
-          {activeTab === Tabs.COLOR && <div>COLOR goes here</div>}
+          {activeTab === Tabs.RADIO && <div>RADIO goes here</div>}
         </div>
         <div className="container-item">
           <Footer />
