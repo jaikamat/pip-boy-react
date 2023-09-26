@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import dragonCon from "./atlanta-dragoncon.json";
+import dragonCon from "./dragon-con.json";
 import {
   MapContainer,
   GeoJSON,
@@ -8,7 +8,7 @@ import {
   Marker,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import leaflet, { LatLng } from "leaflet";
+import leaflet from "leaflet";
 import "./Map.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { LatLngExpression } from "leaflet";
