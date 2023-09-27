@@ -14,8 +14,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import { LatLngExpression } from "leaflet";
 import { DivIcon } from "leaflet";
 
-// @ts-ignore
-const createCustomIcon = (text) => {
+const createCustomIcon = (text: string) => {
   return leaflet.divIcon({
     className: "custom-marker",
     html: `<div class="custom-marker-text">${text}</div>`,
@@ -25,34 +24,13 @@ const createCustomIcon = (text) => {
   });
 };
 
-// @ts-ignore
-const createCustomStreetMarker = (text) => {
-  return leaflet.divIcon({
-    className: "custom-street-marker",
-    html: `<div class="custom-street-marker-text">${text}</div>`,
-    iconSize: [30, 30],
-    iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
-    popupAnchor: [0, -15], // point from which the popup should open relative to the iconAnchor
-  });
-};
-
-// @ts-ignore
-const createClusterCustomIcon = function (cluster) {
+const createClusterCustomIcon = (cluster: { getChildCount: () => number }) => {
   return leaflet.divIcon({
     html: `<span>${cluster.getChildCount()}</span>`,
     className: "custom-marker-cluster",
     iconSize: [25, 25],
   });
 };
-
-function getCenterOfLineString(lineString: any): [number, number] {
-  const latlngs = lineString.coordinates.map((coord: any) => [
-    coord[1],
-    coord[0],
-  ]);
-  const middleIndex = Math.floor(latlngs.length / 2);
-  return latlngs[middleIndex];
-}
 
 const FocusOnLoad = () => {
   const map = useMap();
@@ -103,27 +81,24 @@ const GeoJsonDisplay = ({
     <GeoJSON
       data={dragonCon as GeoJSONProps["data"]}
       pathOptions={{ color: "darkgreen" }}
-      // TODO: this doesn't like "undefined" as a return value
-      // @ts-ignore
       pointToLayer={(feature, latlng) => {
-        if (!feature.properties.name) return;
-
         const icon = createCustomIcon(feature.properties.name);
+
+        if (!feature.properties.name) return leaflet.marker([0, 0], { icon });
         return leaflet.marker(latlng, { icon });
       }}
       onEachFeature={(feature, layer) => {
         let markerData: MarkerData | undefined;
 
-        // TODO: how to orient the strings along their paths?
-        // if (feature.geometry.type === "LineString" && feature.properties.name) {
-        //   const center = getCenterOfLineString(feature.geometry);
-        //   const icon = createCustomStreetMarker(feature.properties.name);
-        //   markerData = { position: center, icon };
-        // }
-
         if (feature.geometry.type === "Polygon" && feature.properties.name) {
-          // @ts-ignore
-          const centroid = layer.getBounds().getCenter();
+          // Have to cast this as `getBounds` is not found, for some reason
+          const centroid = (
+            layer as unknown as {
+              getBounds: () => { getCenter: () => LatLngExpression };
+            }
+          )
+            .getBounds()
+            .getCenter();
           const icon = createCustomIcon(feature.properties.name);
           markerData = { position: centroid, icon };
         }
@@ -155,11 +130,13 @@ const Map = () => {
       center={[33.761585, -84.385612]}
       zoom={17}
       maxZoom={20}
+      minZoom={15}
       style={{
         width: "100%",
         height: "100%",
         backgroundColor: "black",
         outline: "none",
+        zIndex: 0,
       }}
     >
       <FocusOnLoad />
