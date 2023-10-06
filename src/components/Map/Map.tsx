@@ -14,6 +14,11 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import { LatLngExpression } from "leaflet";
 import { DivIcon } from "leaflet";
 
+const Keys = {
+  ZoomIn: "j",
+  ZoomOut: "k",
+};
+
 const createCustomIcon = (text: string) => {
   return leaflet.divIcon({
     className: "custom-marker",
@@ -37,15 +42,11 @@ const FocusOnLoad = () => {
 
   const handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
-      case "ArrowUp":
-        if (event.metaKey) {
-          map.zoomIn();
-        }
+      case Keys.ZoomIn:
+        map.zoomIn();
         break;
-      case "ArrowDown":
-        if (event.metaKey) {
-          map.zoomOut();
-        }
+      case Keys.ZoomOut:
+        map.zoomOut();
         break;
     }
   };
