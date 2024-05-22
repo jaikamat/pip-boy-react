@@ -14,8 +14,6 @@ function useNextTab(initialTab: string, tabs: Record<string, string>) {
         setCurrentTab(tabsArray[2]);
       } else if (event.key === "4") {
         setCurrentTab(tabsArray[3]);
-      } else if (event.key === "5") {
-        setCurrentTab(tabsArray[4]);
       }
     }
 

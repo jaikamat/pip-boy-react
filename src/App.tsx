@@ -5,8 +5,17 @@ import Stat from "./components/Stat";
 import Footer from "./components/Footer/Footer";
 import Inv from "./components/Inv/Inv";
 import ScanlineOverlay from "./components/ScanlineOverlay/ScanlineOverlay";
+import Loader from "./components/Loader/Loader";
 
-const LazyLoadedMap = lazy(() => import("./components/Map/Map"));
+// const LazyLoadedMap = lazy(() => import("./components/Map/Map"));
+
+// TODO: Trying a default wait time?
+const LazyLoadedMap = lazy(() => {
+  return Promise.all([
+    import("./components/Map/Map"),
+    new Promise((resolve) => setTimeout(resolve, 300)),
+  ]).then(([moduleExports]) => moduleExports);
+});
 
 function App() {
   const [activeTab, setActiveTab] = useState<string>(Tabs.STAT);
@@ -25,13 +34,11 @@ function App() {
           {activeTab === Tabs.STAT && <Stat />}
           {activeTab === Tabs.INV && <Inv />}
           {activeTab === Tabs.MAP && (
-            // TODO: make this loader sexier
-            <Suspense fallback={<div>Loading map...</div>}>
+            <Suspense fallback={<Loader>Loading map, please wait...</Loader>}>
               <LazyLoadedMap />
             </Suspense>
           )}
           {activeTab === Tabs.DATA && <div>DATA goes here</div>}
-          {activeTab === Tabs.RADIO && <div>RADIO goes here</div>}
         </div>
         <div className="container-item">
           <Footer />

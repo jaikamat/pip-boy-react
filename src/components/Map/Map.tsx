@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import dragonCon from "./dragon-con.json";
 import {
   MapContainer,
@@ -73,54 +73,52 @@ type MarkerData = {
   icon: DivIcon;
 };
 
-const GeoJsonDisplay = ({
-  addMarkers,
-}: {
-  addMarkers: ([markers]: Array<MarkerData>) => void;
-}) => {
-  return (
-    <GeoJSON
-      data={dragonCon as GeoJSONProps["data"]}
-      pathOptions={{ color: "darkgreen" }}
-      pointToLayer={(feature, latlng) => {
-        const icon = createCustomIcon(feature.properties.name);
-
-        if (!feature.properties.name) return leaflet.marker([0, 0], { icon });
-        return leaflet.marker(latlng, { icon });
-      }}
-      onEachFeature={(feature, layer) => {
-        let markerData: MarkerData | undefined;
-
-        if (feature.geometry.type === "Polygon" && feature.properties.name) {
-          // Have to cast this as `getBounds` is not found, for some reason
-          const centroid = (
-            layer as unknown as {
-              getBounds: () => { getCenter: () => LatLngExpression };
-            }
-          )
-            .getBounds()
-            .getCenter();
+const GeoJsonDisplay = React.memo(
+  ({ addMarkers }: { addMarkers: ([markers]: Array<MarkerData>) => void }) => {
+    return (
+      <GeoJSON
+        data={dragonCon as GeoJSONProps["data"]}
+        pathOptions={{ color: "darkgreen" }}
+        pointToLayer={(feature, latlng) => {
           const icon = createCustomIcon(feature.properties.name);
-          markerData = { position: centroid, icon };
-        }
 
-        if (markerData) {
-          addMarkers([markerData]); // Add the marker data to the state
-        }
-      }}
-    />
-  );
-};
+          if (!feature.properties.name) return leaflet.marker([0, 0], { icon });
+          return leaflet.marker(latlng, { icon });
+        }}
+        onEachFeature={(feature, layer) => {
+          let markerData: MarkerData | undefined;
+
+          if (feature.geometry.type === "Polygon" && feature.properties.name) {
+            // Have to cast this as `getBounds` is not found, for some reason
+            const centroid = (
+              layer as unknown as {
+                getBounds: () => { getCenter: () => LatLngExpression };
+              }
+            )
+              .getBounds()
+              .getCenter();
+            const icon = createCustomIcon(feature.properties.name);
+            markerData = { position: centroid, icon };
+          }
+
+          if (markerData) {
+            addMarkers([markerData]); // Add the marker data to the state
+          }
+        }}
+      />
+    );
+  }
+);
 
 const Map = () => {
   const [markerDataList, setMarkerDataList] = useState<Array<MarkerData>>([]);
 
-  const addMarkers = (newMarkerData: Array<MarkerData>) => {
+  const addMarkers = useCallback((newMarkerData: Array<MarkerData>) => {
     setMarkerDataList((prevMarkerDataList) => [
       ...prevMarkerDataList,
       ...newMarkerData,
     ]);
-  };
+  }, []);
 
   return (
     <MapContainer
