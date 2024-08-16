@@ -24,6 +24,7 @@
 }
 
 .image-child img {
+  max-width: 500px;
   height: 225px;
   position: relative;
   z-index: 100;
