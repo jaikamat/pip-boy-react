@@ -8,6 +8,7 @@ import ScanlineOverlay from "./components/ScanlineOverlay/ScanlineOverlay";
 import Loader from "./components/Loader/Loader";
 import { ClockProvider } from "./hooks/clockProvider";
 import Clock from "./components/Clock";
+import Fun from "./components/Fun";
 
 // const LazyLoadedMap = lazy(() => import("./components/Map/Map"));
 
@@ -40,7 +41,7 @@ function App() {
               <LazyLoadedMap />
             </Suspense>
           )}
-          {activeTab === Tabs.DATA && <div>DATA goes here</div>}
+          {activeTab === Tabs.FUN && <Fun />}
           {activeTab === Tabs.CLOCK && <Clock />}
         </div>
         <div className="container-item">

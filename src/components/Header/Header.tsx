@@ -5,7 +5,7 @@ import "./Header.css";
 export const Tabs = {
   STAT: "STAT",
   INV: "INV",
-  DATA: "DATA",
+  FUN: "FUN",
   CLOCK: "CLOCK",
   MAP: "MAP",
 } as const;
