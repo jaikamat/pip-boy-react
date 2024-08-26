@@ -6,6 +6,8 @@ import Footer from "./components/Footer/Footer";
 import Inv from "./components/Inv/Inv";
 import ScanlineOverlay from "./components/ScanlineOverlay/ScanlineOverlay";
 import Loader from "./components/Loader/Loader";
+import { ClockProvider } from "./hooks/clockProvider";
+import Clock from "./components/Clock";
 
 // const LazyLoadedMap = lazy(() => import("./components/Map/Map"));
 
@@ -21,7 +23,7 @@ function App() {
   const [activeTab, setActiveTab] = useState<string>(Tabs.STAT);
 
   return (
-    <>
+    <ClockProvider>
       <ScanlineOverlay />
       <div className="container">
         <div className="container-item">
@@ -39,12 +41,13 @@ function App() {
             </Suspense>
           )}
           {activeTab === Tabs.DATA && <div>DATA goes here</div>}
+          {activeTab === Tabs.CLOCK && <Clock />}
         </div>
         <div className="container-item">
           <Footer />
         </div>
       </div>
-    </>
+    </ClockProvider>
   );
 }
 

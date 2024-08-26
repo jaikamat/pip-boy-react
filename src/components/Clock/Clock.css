@@ -1,0 +1,80 @@
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #1adc09;
+  background-color: #000;
+  padding: 20px;
+  border-radius: 10px;
+  width: 200px;
+  font-family: Monofonto; /* Ensure the same font is used throughout */
+}
+
+.clock-container h2 {
+  margin-bottom: 20px;
+  font-size: 80px; /* Match the font size of the inputs */
+  font-family: Monofonto; /* Ensure the same font is used */
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input-container label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+}
+
+.input-container input {
+  background-color: #000;
+  color: #1adc09;
+  border: 1px solid #1adc09;
+  padding: 5px;
+  text-align: center;
+  font-size: 80px; /* Set to large font size */
+  outline: none;
+  caret-color: transparent;
+  position: relative;
+  font-family: Monofonto; /* Ensure the same font is used */
+}
+
+.input-container input[type="number"]::-webkit-outer-spin-button,
+.input-container input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-container input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.input-container input:focus {
+  animation: blink-text 1s ease-in-out infinite; /* Apply blinking animation to the text */
+}
+
+.input-container input:focus::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 2px;
+  height: 20px;
+  background-color: #fff;
+  transform: translateY(-50%);
+}
+
+@keyframes blink-text {
+  0%,
+  50%,
+  75% {
+    color: #1adc09; /* Text visible */
+  }
+  100% {
+    color: transparent; /* Text hidden */
+  }
+}

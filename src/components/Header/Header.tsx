@@ -6,6 +6,7 @@ export const Tabs = {
   STAT: "STAT",
   INV: "INV",
   DATA: "DATA",
+  CLOCK: "CLOCK",
   MAP: "MAP",
 } as const;
 
